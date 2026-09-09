@@ -7,7 +7,8 @@ public class Player {
 	
 	private String name;
 	private String marker = "X";
-	
+	private Scanner scanner = new Scanner(System.in);
+
 	public Player() {
 		
 	}
@@ -31,8 +32,6 @@ public class Player {
 	}
 	
 	public int getPlayerChoice() {
-		Scanner scanner = new Scanner(System.in);
-		
 		int playerChoice = scanner.nextInt();
 		
 		while(!(playerChoice > 0 && playerChoice <= 9 )) {
