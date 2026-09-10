@@ -7,25 +7,15 @@ import java.util.Map;
 
 public class AIPlayer extends Player {
 
-	private String name;
-	private String marker = "O";
 	private Map<Integer, Integer> rootPositionScoreMap;
 
-	public String getName() {
-		return name;
-	}
-
 	public AIPlayer() {
-
+		super(null, "O");
 	}
 
 	public AIPlayer(String name) {
-		this.name = name;
+		super(name, "O");
 
-	}
-
-	public String getMarker() {
-		return marker;
 	}
 
 	public Map<Integer, Integer> getScoresMap() {
@@ -77,48 +67,39 @@ public class AIPlayer extends Player {
 		return bestMove;
 	}
 
-	public void callMiniMax(Board board, int depth, Player player) {
+	public void callMiniMax(Board board, int depth) {
 		rootPositionScoreMap = new LinkedHashMap<Integer, Integer>();
-		miniMax(board, depth, player);
+		miniMax(board, depth, true);
 	}
 
-	public int miniMax(Board board, int depth, Player player) {
-		Player huPlayer = new Player("Human");
-		Player aiPlayer = new AIPlayer("AI");
+	public int miniMax(Board board, int depth, boolean isAiTurn) {
 		List<Integer> emptySpots = getEmptySpots(board);
 
-		if (board.checkWinner() != null) {
+		String winner = board.checkWinner();
+		if (winner != null) {
 
-			if (board.checkWinner().equals("X")) {
+			if (winner.equals("X")) {
 				return -10;
-			} else if (board.checkWinner().equals("O")) {
+			} else if (winner.equals("O")) {
 				return 10;
-			} else if (board.checkWinner().equals("DRAW")) {
+			} else if (winner.equals("DRAW")) {
 				return 0;
 			}
 		}
 
 		List<Integer> scores = new ArrayList<Integer>(); 
 
-		for (int i = 0; i < emptySpots.size(); ++i) {
+		for (int spot: emptySpots) {
+			board.addToBoard(spot, isAiTurn ? getMarker() : "X");
+			int currentScore = miniMax(board, depth + 1, !isAiTurn);
+			scores.add(currentScore);
 
-			if (player.getName().equals("AI")) {
-				board.addToBoard(emptySpots.get(i), aiPlayer.getMarker());
-				int currentScore = miniMax(board, depth + 1, huPlayer);
-				scores.add(currentScore);
-
-				if (depth == 0) {
-					rootPositionScoreMap.put(emptySpots.get(i), currentScore);
-				}
-			} else if (player.getName().equals("Human")) {
-				board.addToBoard(emptySpots.get(i), huPlayer.getMarker());
-				int currentScore = miniMax(board, depth + 1, aiPlayer);
-				scores.add(currentScore);
+			if (isAiTurn && depth == 0) {
+				rootPositionScoreMap.put(spot, currentScore);
 			}
-
-			board.getBoard()[emptySpots.get(i) - 1] = null;
+			board.getBoard()[spot - 1] = null;
 		}
-		return player.getName().equals("AI") ? returnMax(scores) : returnMin(scores);
+		return isAiTurn ? returnMax(scores) : returnMin(scores);
 
 	}
 

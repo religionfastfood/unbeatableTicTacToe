@@ -72,7 +72,7 @@ public class AIPlayerTest {
 		String[] boardState = { "O", "O", null, "X", "X", null, null, null, null };
 		board.setBoard(boardState);
 
-		aiPlayer.callMiniMax(board, 0, aiPlayer);
+		aiPlayer.callMiniMax(board, 0);
 		int bestMove = aiPlayer.returnBestMove(aiPlayer.getScoresMap());
 
 		assertEquals(3, bestMove);
@@ -87,7 +87,7 @@ public class AIPlayerTest {
 		String[] boardState = { "X", "X", null, "O", null, null, null, null, null };
 		board.setBoard(boardState);
 
-		aiPlayer.callMiniMax(board, 0, aiPlayer);
+		aiPlayer.callMiniMax(board, 0);
 		int bestMove = aiPlayer.returnBestMove(aiPlayer.getScoresMap());
 
 		assertEquals(3, bestMove);
@@ -115,7 +115,7 @@ public class AIPlayerTest {
 		if (board.checkWinner() != null) {
 			return;
 		}
-		aiPlayer.callMiniMax(board, 0, aiPlayer);
+		aiPlayer.callMiniMax(board, 0);
 		int bestMove = aiPlayer.returnBestMove(aiPlayer.getScoresMap());
 		board.addToBoard(bestMove, aiPlayer.getMarker());
 	}

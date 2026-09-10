@@ -29,7 +29,7 @@ public class TicTacToe {
 				turn = "O";
 			} else {
 				Board clone = board.cloneBoard(board);
-				aiPlayer.callMiniMax(clone, 0, aiPlayer);
+				aiPlayer.callMiniMax(clone, 0);
 				board.addToBoard(aiPlayer.returnBestMove(aiPlayer.getScoresMap()), aiPlayer.getMarker());
 				board.printBoard();
 				winner = board.checkWinner();
