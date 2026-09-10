@@ -19,14 +19,16 @@ public class TicTacToe {
 
 		while (winner == null) {
 			if (turn.equals("X")) {
-				int playerChoice = player.getPlayerChoice();
-				board.addToBoard(playerChoice, player.getMarker());
-				// board.printBoard();
+				boolean wasValidMove = false;
+				while(!wasValidMove) {
+					int playerChoice = player.getPlayerChoice();
+					wasValidMove = board.addToBoard(playerChoice, player.getMarker());
+				}
 				winner = board.checkWinner();
 				turn = "O";
-				// System.out.println(turn + "'s turn. Choose a space to place an " + turn);
 			} else {
-				aiPlayer.callMiniMax(board, 0, aiPlayer);
+				Board clone = board.cloneBoard(board);
+				aiPlayer.callMiniMax(clone, 0, aiPlayer);
 				board.addToBoard(aiPlayer.returnBestMove(aiPlayer.getScoresMap()), aiPlayer.getMarker());
 				board.printBoard();
 				winner = board.checkWinner();

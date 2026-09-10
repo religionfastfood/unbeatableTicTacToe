@@ -1,6 +1,5 @@
 package ticTacToe.ticTacToe;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Player {
@@ -26,20 +25,25 @@ public class Player {
 	public String getMarker() {
 		return marker;
 	}
-	
-	public void setMarker(String marker){
-		this.setMarker(marker);
-	}
-	
+
+
 	public int getPlayerChoice() {
-		int playerChoice = scanner.nextInt();
-		
-		while(!(playerChoice > 0 && playerChoice <= 9 )) {
+		int playerChoice = readIntFromScanner();
+
+		while (!(playerChoice > 0 && playerChoice <= 9)) {
 			System.out.println(playerChoice + " is not a valid input. Please enter a number between 1 and 9, inclusive: ");
-			playerChoice = scanner.nextInt();	
-		} 
-		
+			playerChoice = readIntFromScanner();
+		}
+
 		return playerChoice;
+	}
+
+	private int readIntFromScanner() {
+		while (!scanner.hasNextInt()) {
+			System.out.println("Please enter a whole number between 1 and 9, inclusive: ");
+			scanner.next();
+		}
+		return scanner.nextInt();
 	}
 
 	@Override

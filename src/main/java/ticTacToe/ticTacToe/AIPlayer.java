@@ -33,11 +33,9 @@ public class AIPlayer extends Player {
 	}
 
 	public List<Integer> getEmptySpots(Board board) {
-		List<Integer> emptySpots = new ArrayList<Integer>();
+		List<Integer> emptySpots = new ArrayList<>();
 		for (int i = 0; i < board.getBoard().length; i++) {
-			if (board.getBoard()[i].equals("X") || board.getBoard()[i].equals("O")) {
-				continue;
-			} else {
+			if (!board.getBoard()[i].equals("X") && !board.getBoard()[i].equals("O")) {
 				emptySpots.add(i + 1);
 			}
 		}

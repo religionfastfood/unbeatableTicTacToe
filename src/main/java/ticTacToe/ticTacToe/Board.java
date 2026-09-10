@@ -24,13 +24,16 @@ public class Board {
 
 
 
-	public void addToBoard(int playerChoice, String marker) {
+	public boolean addToBoard(int playerChoice, String marker) {
+		boolean isValidMove = false;
 		if(this.board[playerChoice - 1].equals(String.valueOf(playerChoice))) {
 			this.board[playerChoice - 1] = marker;
+			isValidMove = true;
 		}
 		else {
 			System.out.println("Slot already taken. Please choose again.");
 		}
+		return isValidMove;
 	}
 
 
@@ -101,7 +104,7 @@ public class Board {
 	
 	public Board cloneBoard(Board board) {
 		Board clonedBoard = new Board();
-		clonedBoard.setBoard(board.getBoard());
+		clonedBoard.setBoard(Arrays.copyOf(board.getBoard(), board.getBoard().length));
 		return clonedBoard;
 	}
 	
