@@ -24,6 +24,7 @@ public class TicTacToe {
 					int playerChoice = player.getPlayerChoice();
 					wasValidMove = board.addToBoard(playerChoice, player.getMarker());
 				}
+				board.printBoard();
 				winner = board.checkWinner();
 				turn = "O";
 			} else {
