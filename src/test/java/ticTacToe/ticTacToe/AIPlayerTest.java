@@ -69,7 +69,7 @@ public class AIPlayerTest {
 		// O | O | _   -> AI (O) can win now by playing position 3
 		// X | X | _
 		// _ | _ | _
-		String[] boardState = { "O", "O", "3", "X", "X", "6", "7", "8", "9" };
+		String[] boardState = { "O", "O", null, "X", "X", null, null, null, null };
 		board.setBoard(boardState);
 
 		aiPlayer.callMiniMax(board, 0, aiPlayer);
@@ -84,7 +84,7 @@ public class AIPlayerTest {
 		// X | X | _   -> human (X) threatens to win at position 3, AI (O) must block
 		// O | _ | _
 		// _ | _ | _
-		String[] boardState = { "X", "X", "3", "O", "5", "6", "7", "8", "9" };
+		String[] boardState = { "X", "X", null, "O", null, null, null, null, null };
 		board.setBoard(boardState);
 
 		aiPlayer.callMiniMax(board, 0, aiPlayer);

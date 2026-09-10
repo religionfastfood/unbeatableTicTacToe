@@ -35,7 +35,7 @@ public class AIPlayer extends Player {
 	public List<Integer> getEmptySpots(Board board) {
 		List<Integer> emptySpots = new ArrayList<>();
 		for (int i = 0; i < board.getBoard().length; i++) {
-			if (!board.getBoard()[i].equals("X") && !board.getBoard()[i].equals("O")) {
+			if (board.getBoard()[i] == null) {
 				emptySpots.add(i + 1);
 			}
 		}
@@ -116,7 +116,7 @@ public class AIPlayer extends Player {
 				scores.add(currentScore);
 			}
 
-			board.getBoard()[emptySpots.get(i) - 1] = String.valueOf(emptySpots.get(i));
+			board.getBoard()[emptySpots.get(i) - 1] = null;
 		}
 		return player.getName().equals("AI") ? returnMax(scores) : returnMin(scores);
 

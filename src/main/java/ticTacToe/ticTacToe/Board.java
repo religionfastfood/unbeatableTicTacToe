@@ -31,7 +31,7 @@ public class Board {
 
 	public boolean addToBoard(int playerChoice, String marker) {
 		boolean isValidMove = false;
-		if(this.board[playerChoice - 1].equals(String.valueOf(playerChoice))) {
+		if(this.board[playerChoice - 1] == null) {
 			this.board[playerChoice - 1] = marker;
 			isValidMove = true;
 		}
@@ -40,23 +40,23 @@ public class Board {
 		}
 		return isValidMove;
 	}
-
-
 	
 	public void printBoard() {
 		System.out.println("-------------");
-		System.out.println("| " + board[0] + " | " + board[1] + " | " + board[2] + " |");
+		System.out.println("| " + display(0) + " | " + display(1) + " | " + display(2) + " |");
 		System.out.println("-------------");
-		System.out.println("| " + board[3] + " | " + board[4] + " | " + board[5] + " |");
+		System.out.println("| " + display(3) + " | " + display(4) + " | " + display(5) + " |");
 		System.out.println("-------------");
-		System.out.println("| " + board[6] + " | " + board[7] + " | " + board[8] + " |");
+		System.out.println("| " + display(6) + " | " + display(7) + " | " + display(8) + " |");
 		System.out.println("-------------");
+	}
+
+	private String display(int i) {
+		return board[i] == null ? String.valueOf(i + 1) : board[i];
 	}
 	
 	public void populateEmptyBoard() {
-		for(int i = 0; i < board.length ; i ++) {
-			board[i] = String.valueOf(i + 1);	
-			}
+        Arrays.fill(board, null);
 	}
 	
 	public String checkWinner() {
@@ -65,15 +65,8 @@ public class Board {
 			if (cells.equals("XXX")) return "X";
 			if (cells.equals("OOO")) return "O";
 		}
-		for(int i = 0; i < 9; i ++) {
-			if(Arrays.asList(board).contains(String.valueOf(i + 1))) {
-				break;
-			} 
-			else if(i == 8) {
-				return "DRAW";
-			}
-		}
-		return null;
+		boolean hasEmpty = Arrays.asList(board).contains(null);
+		return hasEmpty ? null : "DRAW";
 	}
 	
 	public Board cloneBoard(Board board) {
@@ -83,12 +76,12 @@ public class Board {
 	}
 	
 	public void createTestBoard() {
-		board[0] = "1";
-		board[1] = "2";
-		board[2] = "3";
+		board[0] = null;
+		board[1] = null;
+		board[2] = null;
 		board[3] = "X";
 		board[4] = "O";
-		board[5] = "6";
+		board[5] = null;
 		board[6] = "O";
 		board[7] = "X";
 		board[8] = "O";

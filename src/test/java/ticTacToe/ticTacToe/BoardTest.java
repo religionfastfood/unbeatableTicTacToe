@@ -18,8 +18,8 @@ public class BoardTest {
 	}
 
 	@Test
-	public void populateEmptyBoard_fillsEachSlotWithItsOwnNumber() {
-		String[] expected = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+	public void populateEmptyBoard_fillsEachSlotWithNull() {
+		String[] expected = { null, null, null, null, null, null, null, null, null };
 		assertArrayEquals(expected, board.getBoard());
 	}
 
@@ -101,7 +101,7 @@ public class BoardTest {
 		testBoard.setBoard(new String[9]);
 		testBoard.createTestBoard();
 
-		String[] expected = { "1", "2", "3", "X", "O", "6", "O", "X", "O" };
+		String[] expected = { null, null, null, "X", "O", null, "O", "X", "O" };
 		assertArrayEquals(expected, testBoard.getBoard());
 	}
 }
