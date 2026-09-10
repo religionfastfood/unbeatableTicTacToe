@@ -37,7 +37,7 @@ Once running, follow the on-screen prompts and enter a number (1-9) correspondin
 
 ## Testing
 
-The project is set up with JUnit, Hamcrest, and Mockito as test dependencies. Run the test suite with:
+The project is set up with JUnit and Hamcrest as test dependencies. Run the test suite with:
 
 ```bash
 mvn test
