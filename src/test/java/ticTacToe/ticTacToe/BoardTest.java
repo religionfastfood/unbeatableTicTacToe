@@ -95,13 +95,9 @@ public class BoardTest {
 		assertArrayEquals(board.getBoard(), cloned.getBoard());
 	}
 
-	@Test
-	public void createTestBoard_setsTheExpectedFixture() {
-		Board testBoard = new Board();
-		testBoard.setBoard(new String[9]);
-		testBoard.createTestBoard();
-
-		String[] expected = { null, null, null, "X", "O", null, "O", "X", "O" };
-		assertArrayEquals(expected, testBoard.getBoard());
+	private Board buildFixtureBoard() {
+		Board b = new Board();
+		b.setBoard(new String[]{null, null, null, "X", "O", null, "O", "X", "O"});
+		return b;
 	}
 }

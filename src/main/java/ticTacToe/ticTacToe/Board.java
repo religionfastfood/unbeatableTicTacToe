@@ -74,20 +74,5 @@ public class Board {
 		clonedBoard.setBoard(Arrays.copyOf(board.getBoard(), board.getBoard().length));
 		return clonedBoard;
 	}
-	
-	public void createTestBoard() {
-		board[0] = null;
-		board[1] = null;
-		board[2] = null;
-		board[3] = "X";
-		board[4] = "O";
-		board[5] = null;
-		board[6] = "O";
-		board[7] = "X";
-		board[8] = "O";
-		
-	}
-	
-	
 
 }
