@@ -14,6 +14,6 @@ function checkWinner(board) {
         if (cells === "XXX") return "X";
         if (cells === "OOO") return "O";
     }
-    const hasEmpty = board.contains(null);
+    const hasEmpty = board.includes(null);
     return hasEmpty ? null : "DRAW";
 }
