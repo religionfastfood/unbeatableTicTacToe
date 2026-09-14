@@ -79,6 +79,8 @@ function renderBoard() {
 
     const container = document.getElementById("board");
 
+    container.replaceChildren();
+
     const fragment = document.createDocumentFragment();
 
     board.forEach((cell, index) => {
