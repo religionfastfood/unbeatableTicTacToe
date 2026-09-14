@@ -17,3 +17,74 @@ function checkWinner(board) {
     const hasEmpty = board.includes(null);
     return hasEmpty ? null : "DRAW";
 }
+
+function findEmptySpots(board) {
+    const emptySpots = [];
+    for (const cell of board) {
+        if (cell === null) {
+            emptySpots.push(board.indexOf(cell));
+        }
+    }
+    return emptySpots;
+}
+
+function returnMin(scores) {
+    let max = -10000;
+    for (const score of scores) {
+        if (score > max) {
+            max = score;
+        }
+    }
+    return max;
+}
+
+function returnMax(scores) {
+    let min = 10000;
+    for (const score of scores) {
+        if (score < min) {
+            min = score;
+        }
+    }
+    return min;
+}
+
+function findBestMove(board) {
+    let bestScore = -Infinity;
+    let bestMove = null;
+
+    function miniMax(board, depth, isAiTurn) {
+        const emptySpots = findEmptySpots(board);
+
+        const winner = checkWinner(board);
+        if (winner != null) {
+            if (winner === "X") {
+                return -10;
+            } else if (winner === "O") {
+                return 10;
+            } else if (winner === "DRAW") {
+                return 0;
+            }
+        }
+
+        const scores = [];
+
+        for (const spot of emptySpots) {
+            board[spot] = isAiTurn ? "O" : "X";
+            const currentScore = miniMax(board, depth + 1, !isAiTurn);
+            scores.push(currentScore);
+
+            if (isAiTurn && depth === 0) {
+                if(currentScore > bestScore) {
+                    bestScore = currentScore;
+                    bestMove = spot;
+                }
+            }
+            board[spot] = null;
+        }
+        return isAiTurn ? Math.max(...scores) : Math.min(...scores);
+    }
+
+    miniMax(board, 0, true);
+    return bestMove;
+}
+
