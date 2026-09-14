@@ -1,3 +1,10 @@
+const board = createBoard();
+const turn = "X";
+
+document.addEventListener("DOMContentLoaded", function() {
+    renderBoard();
+});
+
 const winLines = [
     [0,1,2], [3,4,5],[6,7,8],
     [0,3,6], [1,4,7], [2,5,8],
@@ -68,3 +75,28 @@ function findBestMove(board) {
     return bestMove;
 }
 
+function renderBoard() {
+
+    const container = document.getElementById("board");
+
+    const fragment = document.createDocumentFragment();
+
+    board.forEach((cell, index) => {
+        const button = document.createElement("button");
+        button.id = index;
+        button.addEventListener("click", function() {
+            if (cell === null) {
+               cell = turn;
+               renderBoard();
+            }
+        });
+
+        if (cell != null) {
+            button.textContent = cell;
+        }
+
+        fragment.append(button);
+    })
+
+    container.append(fragment);
+}
