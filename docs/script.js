@@ -20,32 +20,12 @@ function checkWinner(board) {
 
 function findEmptySpots(board) {
     const emptySpots = [];
-    for (const cell of board) {
-        if (cell === null) {
-            emptySpots.push(board.indexOf(cell));
+    for (let i = 0; i < board.length; i++) {
+        if (board[i] === null) {
+            emptySpots.push(i)
         }
     }
     return emptySpots;
-}
-
-function returnMin(scores) {
-    let max = -10000;
-    for (const score of scores) {
-        if (score > max) {
-            max = score;
-        }
-    }
-    return max;
-}
-
-function returnMax(scores) {
-    let min = 10000;
-    for (const score of scores) {
-        if (score < min) {
-            min = score;
-        }
-    }
-    return min;
 }
 
 function findBestMove(board) {

@@ -1,9 +1,5 @@
 package ticTacToe.ticTacToe;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -11,6 +7,8 @@ import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class AIPlayerTest {
 
@@ -108,7 +106,7 @@ public class AIPlayerTest {
 		playAiMove();
 
 		String winner = board.checkWinner();
-		assertFalse("AI should never lose", "X".equals(winner));
+        assertNotEquals("AI should never lose", "X", winner);
 	}
 
 	private void playAiMove() {
