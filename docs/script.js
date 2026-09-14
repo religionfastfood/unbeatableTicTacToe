@@ -88,7 +88,7 @@ function renderBoard() {
         button.id = index;
         button.addEventListener("click", function() {
             if (cell === null) {
-               cell = turn;
+               board[index] = turn;
                renderBoard();
             }
         });
