@@ -1,8 +1,10 @@
 const board = createBoard();
 const turn = "X";
+let statusText = "X has the first move. Click any square to place your marker."
 
 document.addEventListener("DOMContentLoaded", function() {
     renderBoard();
+    document.getElementById("status").textContent = statusText;
 });
 
 const winLines = [
@@ -75,6 +77,23 @@ function findBestMove(board) {
     return bestMove;
 }
 
+function updateStatusMessage() {
+    const winner = checkWinner(board);
+
+    switch (winner) {
+        case "X":
+            statusText = "X Wins!";
+            break;
+        case "O":
+            statusText = "O Wins!";
+            break;
+        case "DRAW":
+            statusText = "The match is a draw!";
+            break;
+    }
+    document.getElementById("status").textContent = statusText;
+}
+
 function renderBoard() {
 
     const container = document.getElementById("board");
@@ -87,9 +106,19 @@ function renderBoard() {
         const button = document.createElement("button");
         button.id = index;
         button.addEventListener("click", function() {
-            if (cell === null) {
+
+            if (cell === null && checkWinner(board) === null) {
                board[index] = turn;
                renderBoard();
+               if (checkWinner(board) != null) {
+                   updateStatusMessage();
+               } else {
+                   board[findBestMove(board)] = "O";
+                   renderBoard(board);
+                   if (checkWinner(board) != null){
+                       updateStatusMessage();
+                   }
+               }
             }
         });
 
