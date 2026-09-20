@@ -1,0 +1,69 @@
+body {
+    background-color: #292929;
+    color: #e6e6e6;
+    font-family: "Segoe UI", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+
+h1 {
+    margin: 10px 0;
+    letter-spacing: 3px;
+    font-variant-caps: all-petite-caps;
+}
+
+#status {
+    color: #aaaaaa;
+    font-size: 1.2rem;
+    font-variant-caps: all-small-caps;
+    text-align: center;
+}
+
+#board  {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: min(90vw, 450px);
+    height: min(90vw, 450px);
+    gap: 4px;
+    background-color: #3b3b3b;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+#board button {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #333333;
+    color: #e6e6e6;
+    border: none;
+    border-radius: 4px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+#board button:hover {
+    background-color: #4a4a4a;
+}
+
+#board .x-mark {
+    color: #008FB3;
+}
+
+#board .o-mark {
+    color: #ff6600;
+}
+
+#board .x-mark:hover, #board .o-mark:hover {
+    background-color: #333333;
+}
+
+@media (max-width: 500px) {
+    #status-break {
+        display: block;
+    }
+}

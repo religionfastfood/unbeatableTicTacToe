@@ -1,10 +1,10 @@
 const board = createBoard();
 const turn = "X";
-let statusText = "X has the first move. Click any square to place your marker."
+let statusText = "X has the first move. <span id=\"status-break\"> </span>Click any square to place your marker."
 
 document.addEventListener("DOMContentLoaded", function() {
     renderBoard();
-    document.getElementById("status").textContent = statusText;
+    document.getElementById("status").innerHTML = statusText;
 });
 
 const winLines = [
@@ -124,6 +124,7 @@ function renderBoard() {
 
         if (cell != null) {
             button.textContent = cell;
+            button.classList.add(cell === "X" ? "x-mark" : "o-mark");
         }
 
         fragment.append(button);
