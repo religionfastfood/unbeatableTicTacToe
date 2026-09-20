@@ -2,13 +2,13 @@
 
 A console-based Tic-Tac-Toe game in Java where you play against an AI opponent that never loses. The AI uses the minimax algorithm to evaluate every possible outcome and always picks the optimal move, so the best a human player can achieve is a draw.
 
+Originally written in java. I later added a JS port of the game so it could be played in a browser, which is live here: [Play Unbeatable Tic-Tac-Toe](https://religionfastfood.github.io/unbeatableTicTacToe/)
+
 ## Revisiting this project
 
 I originally wrote this six years ago. In September 2026 I went back through it with more professional experience and worked through the codebase, fixing bugs and cleaning up the design: input handling that crashed on bad input, a board-cloning bug, a hardcoded switch statement instead of a lookup table for the win lines, an inheritance problem in `AIPlayer`, and a missing test suite for the game loop, among other things.
 
 A full write-up of what was found and fixed, including before/after diffs for each change, is here: [Minimax Debug Log](https://claude.ai/code/artifact/6ab216b2-fe22-4085-8050-8ed1194b50ce)
-
-I also made a JS port of the game so that it could be easily played in a browser, which can be accessed here: [Play Unbeatable Tic-Tac-Toe](https://religionfastfood.github.io/unbeatableTicTacToe/)
 
 ## How it works
 
