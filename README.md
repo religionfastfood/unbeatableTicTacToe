@@ -1,4 +1,4 @@
-# unbeatableTicTacToe
+# Unbeatable Tic-Tac-Toe
 
 A console-based Tic-Tac-Toe game in Java where you play against an AI opponent that never loses. The AI uses the minimax algorithm to evaluate every possible outcome and always picks the optimal move, so the best a human player can achieve is a draw.
 
